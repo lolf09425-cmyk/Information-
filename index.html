@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated Personal Website</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f6fc;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .section {
+      padding: 80px 20px;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+    }
+
+    .section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .welcome {
+      background: linear-gradient(135deg, #1d3557, #457b9d);
+      color: white;
+      padding: 120px 20px;
+    }
+
+    .welcome h1 {
+      font-size: 48px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      background: #ffffff;
+      color: #1d3557;
+      padding: 14px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: #eaf2ff;
+    }
+
+    .profile-section img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #1d3557;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .info h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #1d3557;
+    }
+
+    .info p {
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+      color: #555;
+    }
+
+    .skills, .contact, .quotes {
+      background-color: #ffffff;
+      border-radius: 16px;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 30px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .skills h2, .contact h2, .quotes h2 {
+      color: #1d3557;
+      margin-bottom: 20px;
+    }
+
+    .skills ul, .quotes ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .skills li, .quotes li {
+      font-size: 18px;
+      padding: 10px;
+      background: #f1f1f1;
+      margin: 8px 0;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+
+    .skills li:hover {
+      background: #dce6f5;
+    }
+
+    .contact p {
+      font-size: 16px;
+      margin: 10px 0;
+      color: #444;
+    }
+
+    a {
+      color: #1d3557;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .welcome h1 {
+        font-size: 36px;
+      }
+
+      .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+      }
+
+      .info p {
+        padding: 0 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Welcome Section -->
+  <section class="section welcome show">
+    <h1>Welcome to My profile</h1>
+    <a href="#profile"><button class="btn">More</button></a>
+  </section>
+
+  <!-- Profile Section -->
+  <section class="section profile-section" id="profile">
+    <img src="tawsif.jpg" alt="My Photo">
+    <div class="info">
+      <h2>Tawsif Reza</h2>
+      <p>I’m a web designer, a ai motivational content creator, and a lifelong learner who loves turning ideas into beautiful, functional designs.</p>
+    </div>
+    <a href="#skills"><button class="btn">Join Now</button></a>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="section skills" id="skills">
+    <h2>My Skills</h2>
+    <ul>
+      <li>HTML & CSS</li>
+      <li>JavaScript (Basic)</li>
+      <li>Graphic Design</li>
+      <li>Video Editing</li>
+      <li>Ai Motivational video makeing </li>
+    </ul>
+    <a href="#contact"><button class="btn">Contact</button></a>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section contact" id="contact">
+    <h2>Contact Me</h2>
+    <p>Email: hmtawsif0.8@gmail.com</p>
+    <p>Phone: +8801891527683</p>
+    <p>Instagram: <a href="https://www.instagram.com/tawsif3x?igsh=d2tvb2J0c3l3MDFy" target="_blank">@yourprofile</a></p>
+    <a href="#quotes"><button class="btn">Inspire Me</button></a>
+  </section>
+
+  <!-- Quotes Section -->
+  <section class="section quotes" id="quotes">
+    <h2>Inspirational Quotes</h2>
+    <ul>
+      <li>"Believe in yourself and all that you are."</li>
+      <li>"Don’t watch the clock; do what it does. Keep going."</li>
+      <li>"Success is not final, failure is not fatal: It is the courage to continue that counts."</li>
+      <li>"Your limitation—it’s only your imagination."</li>
+      <li>"Push yourself, because no one else is going to do it for you."</li>
+    </ul>
+  </section>
+
+  <!-- Scroll Animation Script -->
+  <script>
+    const sections = document.querySelectorAll('.section');
+
+    const options = {
+      threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+
+    sections.forEach(section => {
+      if(!section.classList.contains("welcome")) {
+        observer.observe(section);
+      }
+    });
+  </script>
+
+</body>
+</html>
